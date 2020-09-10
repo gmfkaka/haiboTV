@@ -1,0 +1,313 @@
+<!-- pages/detail/index.wxml -->
+<view class='detailBox'>
+	<!-- 直播  -->
+	<view class="" wx:if="{{liveDetail.time_status == 1}}">
+		<live-player src="{{videoUrl}}" autoplay id='liveBox' bindstatechange="statechange" binderror="error" class='videoBox' autoplay='{{true}}' object-fit='fillCrop' mode="live" wx:if="{{!maskFlag}}" />
+		<!-- 全屏提示 直播结束 最高显示层 -->
+		<cover-view class='modelShowPage' wx:else>
+			<!-- 关闭 -->
+			<cover-view bindtap="endSshutDownFun">
+				<cover-image class='endSshutDown' src='../../images/live/new/endShutDown.png'></cover-image>
+			</cover-view>
+			<!-- title 头像 姓名 按钮 -->
+			<cover-view class='anchorInfoBox'>
+				<cover-view>
+					<cover-view class='endText'>直播已结束</cover-view>
+				</cover-view>
+				<cover-view class='flexCenter'>
+					<cover-image class='endAvatar' src="{{liveDetail.anchor_info.anchor_avatar.host + liveDetail.anchor_info.anchor_avatar.dir + liveDetail.anchor_info.anchor_avatar.filepath + liveDetail.anchor_info.anchor_avatar.filename || '../../images/pretemit.png'}}"></cover-image>
+				</cover-view>
+				<cover-view class='endTextBox'>
+					<cover-view class='endText'>{{liveDetail.anchor_info.anchor_username}}</cover-view>
+				</cover-view>
+				<cover-view>
+					<cover-view class='attentionBox' wx:if='{{!isAttention}}' bindtap="isAttentionFun">
+						<cover-view class='attentionText'>关注</cover-view>
+						<cover-image class='attentionBg' src='../../images/live/new/attentionBg.png'></cover-image>
+					</cover-view>
+					<cover-view class='attentionBox' wx:else>
+						<cover-view class='attentionText'>已关注</cover-view>
+						<cover-image class='attentionBg' src='../../images/live/new/attentionBgYJ.png'></cover-image>
+					</cover-view>
+				</cover-view>
+			</cover-view>
+			<!-- 数据显示 -->
+			<cover-view class='infoBox'>
+				<cover-view class='infoMinBox'>
+					<cover-view class='infoNum'>{{liveDetail.real_watch_num}}</cover-view>
+					<cover-view class='infoText'>点击数</cover-view>
+				</cover-view>
+
+				<cover-view class='infoMinBox'>
+					<cover-view class='infoNum'>{{liveDetail.share_num}}</cover-view>
+					<cover-view class='infoText'>分享数</cover-view>
+				</cover-view>
+
+				<cover-view class='infoMinBox'>
+					<cover-view class='infoNum'>{{liveDetail.comment_num}}</cover-view>
+					<cover-view class='infoText'>聊天数</cover-view>
+				</cover-view>
+
+				<cover-view class='infoMinBox'>
+					<cover-view class='infoNum'>{{liveDetail.reward_num}}</cover-view>
+					<cover-view class='infoText'>打赏金额</cover-view>
+				</cover-view>
+
+			</cover-view>
+		</cover-view>
+	</view>
+	<!-- 回顾 -->
+	<view wx:elif="{{liveDetail.time_status == 2}}" class="huiguBox">
+		<view wx:if="{{videoPlay == false}}">
+			<image class="videoPoster" src="../../images/live/moren.png" mode="aspectFill"></image>
+			<image class="playBtn" src="../../images/live/play.png" bindtap="videoPlay" binderror="" wx:if="{{!maskFlag}}"></image>
+
+			<!-- 全屏提示 直播结束 最高显示层 -->
+			<cover-view class='modelShowPage' wx:else>
+				<!-- 关闭 -->
+				<cover-view bindtap="endSshutDownFun">
+					<cover-image class='endSshutDown' src='../../images/live/new/endShutDown.png'></cover-image>
+				</cover-view>
+				<!-- title 头像 姓名 按钮 -->
+				<cover-view class='anchorInfoBox'>
+					<cover-view>
+						<cover-view class='endText'>直播已结束</cover-view>
+					</cover-view>
+					<cover-view class='flexCenter'>
+						<cover-image class='endAvatar' src="{{liveDetail.anchor_info.anchor_avatar.host + liveDetail.anchor_info.anchor_avatar.dir + liveDetail.anchor_info.anchor_avatar.filepath + liveDetail.anchor_info.anchor_avatar.filename || '../../images/pretemit.png'}}"></cover-image>
+					</cover-view>
+					<cover-view class='endTextBox'>
+						<cover-view class='endText'>{{liveDetail.anchor_info.anchor_username}}</cover-view>
+					</cover-view>
+					<cover-view>
+						<cover-view class='attentionBox' wx:if='{{!isAttention}}' bindtap="isAttentionFun">
+							<cover-view class='attentionText'>关注</cover-view>
+							<cover-image class='attentionBg' src='../../images/live/new/attentionBg.png'></cover-image>
+						</cover-view>
+						<cover-view class='attentionBox' wx:else>
+							<cover-view class='attentionText'>已关注</cover-view>
+							<cover-image class='attentionBg' src='../../images/live/new/attentionBgYJ.png'></cover-image>
+						</cover-view>
+					</cover-view>
+				</cover-view>
+				<!-- 数据显示 -->
+				<cover-view class='infoBox'>
+					<cover-view class='infoMinBox'>
+						<cover-view class='infoNum'>{{liveDetail.real_watch_num}}</cover-view>
+						<cover-view class='infoText'>点击数</cover-view>
+					</cover-view>
+
+					<cover-view class='infoMinBox'>
+						<cover-view class='infoNum'>{{liveDetail.share_num}}</cover-view>
+						<cover-view class='infoText'>分享数</cover-view>
+					</cover-view>
+
+					<cover-view class='infoMinBox'>
+						<cover-view class='infoNum'>{{liveDetail.comment_num}}</cover-view>
+						<cover-view class='infoText'>聊天数</cover-view>
+					</cover-view>
+
+					<cover-view class='infoMinBox'>
+						<cover-view class='infoNum'>{{liveDetail.reward_num}}</cover-view>
+						<cover-view class='infoText'>打赏金额</cover-view>
+					</cover-view>
+
+				</cover-view>
+			</cover-view>
+
+
+
+
+		</view>
+		<!-- 关闭了所有控制栏 -->
+		<video id="myVideo" src="{{videoUrl}}" class='videoBox' show-fullscreen-btn="{{false}}" show-play-btn='{{false}}' object-fit='cover' controls='{{false}}' wx:else bindpause='videoPause' bindended='videoEnd' bindtimeupdate='videoScheduleFun'>
+		</video>
+	</view>
+	<!-- 预告 -->
+	<view class="" wx:elif="{{liveDetail.time_status == 0}}">
+		<image class="videoPoster" src="../../images/live/moren.png" mode="aspectFill"></image>
+	</view>
+	<!-- 头部 -->
+	<cover-view class="pageHead flexAlign">
+		<cover-view class='videoHeader flexBetween flexAlign'>
+			<cover-view class='flexLeft headLeft'>
+				<cover-image src="{{liveDetail.anchor_info.anchor_avatar.host + liveDetail.anchor_info.anchor_avatar.dir + liveDetail.anchor_info.anchor_avatar.filepath + liveDetail.anchor_info.anchor_avatar.filename || '../../images/pretemit.png'}}" class='userImg' mode="aspectFit"></cover-image>
+				<cover-view class='flexColumn'>
+					<cover-view class='username'>{{liveDetail.anchor_info.anchor_username}}</cover-view>
+					<cover-view class='liveStatus flexAlign' wx:if="{{liveDetail.status == 2}}">
+						<cover-view class='statusIcon huigu'></cover-view>
+						<cover-view class='username wxText'>{{liveDetail.time_status_text}}</cover-view>
+					</cover-view>
+				</cover-view>
+				<cover-view class='userAttentionBtn'>
+					<!-- 判断是否为 关注 用户是否处于关注状态 -->
+					<cover-image wx:if='{{isAttention}}' class='attentionback' src='../../images/live/new/attentionGet.png'></cover-image>
+					<block wx:else>
+						<cover-view bindtap="isAttentionFun" class='userAttentionText'>关注</cover-view>
+						<cover-image bindtap="isAttentionFun" class='attentionback' src='../../images/live/new/attentionback.png'></cover-image>
+					</block>
+				</cover-view>
+			</cover-view>
+			<cover-view style='margin-right:-100rpx;display:flex;' wx:if="{{liveDetail.time_status == 1 && false}}">
+				<cover-view style='position:relative;display:flex;width:228rpx;height:66rpx;'>
+					<cover-view style="width:66rpx;height:66rpx;background-color:#000;position:absolute;margin-left:{{item * 76 }}rpx;" wx:for='{{3}}'>
+						<cover-image style="width:100%;height:100%;" src='../../images/live/love.png'></cover-image>
+					</cover-view>
+				</cover-view>
+
+			</cover-view>
+			<cover-view class="videoNum {{liveDetail.time_status == 0?'':'flexAlign'}}">
+				<cover-view class="flexLeft flexAlign" style="margin: 9rpx">
+					<cover-image src='../../images/live/new/nums.png' class='numIcon'></cover-image>
+					<cover-view class="wxText">{{watch_num}}</cover-view>
+				</cover-view>
+				<cover-view class="wxText" wx:if="{{liveDetail.time_status == 0}}">开始时间：{{startTime}}</cover-view>
+			</cover-view>
+		</cover-view>
+	</cover-view>
+	<!-- 更多直播 -->
+	<cover-view class="pageHead flexAlign moreBtn" bindtap="clickMoreLive">
+		<cover-image class='moreImage' src='../../images/live/new/leftBtn.png'></cover-image>
+		<cover-view>
+			更多直播
+		</cover-view>
+	</cover-view>
+	<!-- 礼物显示 -->
+	<view class='showGiftBox' wx:if='{{showGiftStatus}}'>
+		<image class='showGiftImage' src='{{showGoodsObj.userImgSrc}}'></image>
+		<view class="pageHead flexAlign showGift">
+			<view class='showGiftTextBox'>
+				<view>{{showGoodsObj.userName}}</view>
+				<view style="margin-top:11rpx;font-size:28rpx;">
+					送出了 {{showGoodsObj.goodsName}}
+				</view>
+			</view>
+			<image class='showGiftImageRight' src='{{showGoodsObj.giftImgSrc}}'></image>
+		</view>
+	</view>
+	<!-- 评论列表 -->
+	<view class='commnentBox'>
+		<view class='tip' wx:if="{{noticeText}}">直播消息：{{noticeText}}</view>
+		<scroll-view class='commentList' id='comment' scroll-y='true' style="height: 340rpx" scroll-top="{{toView}}" scroll-with-animation="{{true}}">
+			<view class='commentItem' wx:for="{{commentList}}" wx:key wx:for-index="index">
+				<view class='user wxText'>{{item.user_info.user_name?item.user_info.user_name:'用户'}}: </view>
+				<view class='content wxText'>{{item.message}}</view>
+			</view>
+		</scroll-view>
+	</view>
+	<!-- 底部 在回顾的时候显示的控制栏 -->
+	<view class='videoControlsBox' wx:if="{{liveDetail.time_status == 2 && videoConstIsShow}}">
+		<view>
+			<image bindtap="videoPlayFun" class='videoControlsImg' wx:if='{{!videoTimeOutStatus}}' src='../../images/live/new/progressStart.png'></image>
+			<image bindtap="videoTimeOutFun" class='videoControlsImg' wx:else src='../../images/live/new/progressTimeOut.png'></image>
+		</view>
+		<view class='videoControlsProgressBox'>
+			<view class='videoControlsProgress'>
+				<view class='videoControlsProgressS' style="width:{{videoControlsProgressSWidth}}"></view>
+				<view class='videoControlsProgressN'></view>
+			</view>
+			<image class='progressCircleImg' style='left:{{progressCircleLeft}}' src='../../images/live/new/progressCircle.png'></image>
+		</view>
+		<view class='progressTimeBox'>
+			{{videoTimeStart}}/{{videoTimeEnd}}
+		</view>
+	</view>
+	<!-- 底部 礼物、评论、点赞 -->
+	<view class="detailBottom flexBetween">
+		<!-- 需要添加上 自主研发的 video 管理模块 -->
+		<view class='flexLeft'>
+			<!-- wx:if="{{liveDetail.time_status == 1}}" -->
+			<!-- 新版本变成了 任何状态都可以评论 并且 修改了样式 -->
+			<!-- <view class='iconBox' bindtap="showInput">
+				<image src='../../images/live/fayan.png'></image>
+			</view> -->
+			<view class='iconBox' bindtap="showInput">
+				<view class='commentBox'>
+					<text class='commentBoxText'>说些什么…</text>
+				</view>
+			</view>
+			<!-- 新版本去掉了刷新 -->
+			<!-- <view class='iconBox' bindtap="refresh">
+				<image src='../../images/live/shuaxin.png'></image>
+			</view> -->
+		</view>
+		<!-- 送礼物模块 -->
+		<view class='iconBox'>
+			<view class='iconBoxMin' bindtap="giftShowFun">
+				<image class="heart" src='../../images/live/new/gift.png'></image>
+			</view>
+
+			<view>
+				<image src='../../images/live/love.png' class="heart" bindtap="onClickImage"></image>
+				<view class="loveNum">{{loveNum}}</view>
+			</view>
+
+		</view>
+	</view>
+
+	<canvas canvas-id="mycanvas" class="canvas" />
+	<!-- 评论框 wx:if="{{showInput}}" -->
+	<view class="comInput flexBetween" wx:if="{{showInput}}">
+		<input auto-focus placeholder="说点什么" value="{{comValue}}" bindblur="getcomValue" bindinput="getcomInput" bindblur="hideInput" />
+		<view class="btn flexAlign">
+			<view class="send-btn {{comValue!= ''?'success':''}}" bindtap='sendComment'>发送</view>
+		</view>
+	</view>
+	<!-- 评论审核 -->
+	<view class="commentSuccess" wx:if='{{commentFlag}}'>
+		<view class="mask">
+			<image class="commentOk" src="../../images/live/commentOk.png" bindload="" binderror=""></image>
+			<view class="text">评论成功，审核中</view>
+			<view class="iKnow" bindtap="closeComment">我知道了</view>
+		</view>
+	</view>
+	<!-- 公告弹窗 -->
+	<view class="commentSuccess noticeBox" wx:if='{{liveNoticeFlag}}'>
+		<view class="mask">
+			<image class="noticeOk" src="../../images/live/notice.png" bindload="" binderror=""></image>
+			<view class="text liveNotice">{{noticeText}}</view>
+			<view class="iKnow" bindtap="closeNotice">关闭</view>
+		</view>
+	</view>
+	<modal bind:myevent="onGetCode" modal-hidden="{{is_modal_Hidden}}" modal-msg="{{is_modal_Msg}}" />
+	<view class="d_mask" wx:if="{{maskDisplay}}" catchtouchmove="true"></view>
+</view>
+
+
+<!-- 半屏 最高显示层 礼物列表-->
+<view class='giftShowBox' wx:if='{{giftShowStatus}}'>
+	<view style="width: 24px;height: 24px;display: flex;justify-content: center;align-items: center;position: absolute;right: 14rpx;top: 14rpx;">
+		<image bindtap="giftHideFun" class='giftShutDown' src='../../images/live/new/endShutDown.png'></image>
+	</view>
+	<view style='margin-top:80rpx;'>
+		<swiper class='swperBox' indicator-dots='{{resImgList.length > 7?true:false}}'>
+			<swiper-item class='giftList' wx:for='{{resImgList.length / 8}}'>
+				<view class='giftItem' bindtap="giftNumSelectFun" data-index='{{item2.id}}' wx:for-index='index2' wx:for='{{resImgList}}' wx:for-item='item2' wx:if='{{index2 < ((index +1) *8) && index2 >= (index * 8)}}' style="background:{{item2.id != giftNumSelect?'rgba(42, 45, 64, 0);':'rgba(42, 45, 64, 1);'}}">
+					<view class='giftItemImgBox'>
+						<image class='giftItemImg' src='{{item2.imgSrc}}'></image>
+					</view>
+					<view class='giftTitle'>{{item2.id != giftNumSelect?item2.name:item2.value+'金币'}}</view>
+					<view class='giftNum'>{{item2.value}}金币</view>
+					<view class='giftItemBomBox' wx:if='{{item2.id == giftNumSelect}}'>
+						<image class='giftItemBom' src='../../images/live/new/gift/juxing2.png'></image>
+						<view class="giftItemBomText" data-items='{{item2}}' bindtap="goodRewardFun">赠送</view>
+					</view>
+				</view>
+			</swiper-item>
+		</swiper>
+	</view>
+
+	<view class='jinBiImgAllBox'>
+		<view class='jinBiImgBox'>
+			<image class='jinBiImg' src='../../images/live/new/gift/pageJin.png'></image>
+			<view class='jinBiText'>金币余额：{{userCurrencyType.reward_user_credit}}</view>
+		</view>
+		<!-- 小程序 不开启充值系统 -->
+		<!-- <view class='rechargeBtnBox'>
+			<view class='rechargeBtn'>
+				去充值
+			</view>
+		</view> -->
+	</view>
+
+</view>

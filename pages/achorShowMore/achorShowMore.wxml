@@ -1,0 +1,24 @@
+<view class='morePage'>
+	<view class='liveModel' wx:for='{{achorShowList}}' data-id='{{item.id}}' bindtap="goDetail">
+  
+		<view class='topView'>
+
+			<view class='videoPlayBox'>
+				<view class='videoPlayView'></view>
+				<text class='videoPlayText'>{{item.time_status==1?"直播中":item.time_status==2?"回顾":"预告"}}</text>
+			</view>
+
+			<view class='numBox'>
+				<image class='numIcon' src='../../images/live/new/nums.png'></image>
+				{{item.real_watch_num}}
+			</view>
+			<image class='videoBack' src='{{item.imgSrc}}'></image>
+		</view>
+
+		<view class='bottomView'>
+			<text>{{item.title}}</text>
+		</view>
+
+	</view>
+
+</view>

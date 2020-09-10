@@ -1,0 +1,25 @@
+{
+  "pages": [
+    "pages/entry/entry",
+    "pages/achorShow/index",
+    "pages/liveIndex/home",
+    "pages/hotLive/hotLive",
+    "pages/voteIndex/list",
+    "pages/voteDetail/index",
+    "pages/voteNews/index",
+    "pages/hotList/hotList",
+    "pages/leakList/leakList",
+    "pages/leakVideo/leakVideo",
+    "pages/live/live",
+    "pages/hotTw/hotTw",
+    "pages/item/item",
+    "pages/tarbar/index",
+    "pages/achorShowMore/achorShowMore"
+  ],
+  "window": {
+    "navigationBarBackgroundColor": "#ffffff",
+    "navigationBarTitleText": "海博TV",
+    "navigationBarTextStyle": "black"
+  },
+  "sitemapLocation": "sitemap.json"
+}
